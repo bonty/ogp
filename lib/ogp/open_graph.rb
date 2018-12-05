@@ -54,16 +54,19 @@ module OGP
           when /^image$/i
             images << OpenStruct.new(url: content)
           when /^image:(.+)/i
+            images << OpenStruct.new unless images.last
             images.last[Regexp.last_match[1]] = content
           when /^audio$/i
             audios << OpenStruct.new(url: content)
           when /^audio:(.+)/i
+            audios << OpenStruct.new unless audios.last
             audios.last[Regexp.last_match[1]] = content
           when /^locale/i
             locales << content
           when /^video$/i
             videos << OpenStruct.new(url: content)
           when /^video:(.+)/i
+            videos << OpenStruct.new unless videos.last
             videos.last[Regexp.last_match[1]] = content
           else
             attribute_name.tr!(':', '_')
