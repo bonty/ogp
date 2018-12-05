@@ -66,6 +66,7 @@ module OGP
           when /^video:(.+)/i
             videos.last[Regexp.last_match[1]] = content
           else
+            attribute_name.tr!(':', '_')
             instance_variable_set("@#{attribute_name}", content)
         end
       end
